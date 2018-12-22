@@ -86,10 +86,12 @@ class Dialog():
         enc_input = self._pad(input, input_max)
         dec_input = self._pad(output, output_max, start=True)
         target = self._pad(output, output_max, eos=True)
+        #seq2seq와 동일하게 3개의 입력 값을 구성
 
         # 구글 방식으로 입력을 인코더에 역순으로 입력한다.
         enc_input.reverse()
 
+        #아래와 같이 onehot레이블 구성
         enc_input = np.eye(self.vocab_size)[enc_input]
         dec_input = np.eye(self.vocab_size)[dec_input]
 
@@ -156,6 +158,7 @@ class Dialog():
                 ids = self.tokens_to_ids(tokens)
                 self.examples.append(ids)
 
+    #tokenize를 직접 써는데 그러면 안되고 NLTK를 써야 된다.
     def tokenizer(self, sentence):
         # 공백으로 나누고 특수문자는 따로 뽑아낸다.
         words = []

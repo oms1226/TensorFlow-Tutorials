@@ -35,7 +35,7 @@ class Seq2Seq:
 
         enc_cell, dec_cell = self._build_cells()
 
-        with tf.variable_scope('encode'):
+        with tf.variable_scope('encode'):#tf 내에서 충동 안내게 하려고!!!, 강사님은 name 필드에 값을 지정
             outputs, enc_states = tf.nn.dynamic_rnn(enc_cell, self.enc_input, dtype=tf.float32)
 
         with tf.variable_scope('decode'):

@@ -17,7 +17,7 @@ class ChatBot:
         self.model = Seq2Seq(self.dialog.vocab_size)
 
         self.sess = tf.Session()
-        ckpt = tf.train.get_checkpoint_state(train_dir)
+        ckpt = tf.train.get_checkpoint_state(train_dir)#기 트레이닝한 데이터를 불러오는 것이다.
         self.model.saver.restore(self.sess, ckpt.model_checkpoint_path)
 
     def run(self):
